@@ -3,6 +3,7 @@ import logo from "../assets/logo.png";
 import { MdEmail } from "react-icons/md";
 import { FaLock } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 export const Login = () => {
   const navigate = useNavigate();
@@ -49,52 +50,47 @@ export const Login = () => {
     });
     return errors;
   };
-  handleSubmit = async (event) => {
-    try{
-      const await = GET ('/api/login', for mData)
-      
-    }
-  }
 
-  // const handleSubmit = async (event) => {
-  //   event.preventDefault();
-  //   const errors = validateForm();
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const errors = validateForm();
 
-  //   if (Object.keys(errors).length === 0) {
-  //     setSubmitting(true);
-  //     try {
-  //       await new Promise((res) => setTimeout(res, 1000));
+    if (Object.keys(errors).length === 0) {
+      setSubmitting(true);
+      try {
+        await new Promise((res) => setTimeout(res, 1000));
 
 
-  //       const storedUsers = JSON.parse(localStorage.getItem("registeredUsers")) || [];
-  //       const matchedUser = storedUsers.find(
-  //         (user) =>
-  //           user.email === formData.email &&
-  //           user.password === formData.password
-  //       );
+        const storedUsers = JSON.parse(localStorage.getItem("registeredUsers")) || [];
+        const matchedUser = storedUsers.find(
+          (user) =>
+            user.email === formData.email &&
+            user.password === formData.password
+        );
 
-  //       if (!matchedUser) {
-  //         setError({
-  //           email: "Invalid email or password",
-  //           password: "Invalid email or password",
-  //         });
-  //         return;
-  //       }
+        if (!matchedUser) {
+          setError({
+            email: "Invalid email or password",
+            password: "Invalid email or password",
+          });
+          return;
+        }
 
-  //       localStorage.setItem("userDetails", JSON.stringify(matchedUser));
-  //       console.log("Login successful", matchedUser);
+        localStorage.setItem("userDetails", JSON.stringify(matchedUser));
+        console.log("Login successful", matchedUser);
         
-  //       // Clear the form after successful login
-  //       setFormData({ email: "", password: "" });
+        // Clear the form after successful login
+        setFormData({ email: "", password: "" });
 
-  //       navigate("/dashboard1", { state: matchedUser });
+        navigate("/dashboard1", { state: matchedUser });
 
-  //     } finally {
-   //     }
-  //   } else {
-  //     setError(errors);
-  //   }
-  // };
+      } finally {
+        setSubmitting(false);
+      }
+    } else {
+      setError(errors);
+    }
+  };
 
   return (
     <div className="max-w-[700px] mx-auto bg-white p-8 rounded-2xl shadow-lg mt-10">
