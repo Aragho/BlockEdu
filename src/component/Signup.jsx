@@ -48,7 +48,7 @@ const Signup = () => {
 
     if (!formData.phone) {
       errors.phone = "Phone number is required";
-    } else if (!/^\d{10}$/.test(formData.phone)) {
+    } else if (!/^\d{10}$/.test(formData.phone)) {   
       errors.phone = "Phone number must be 10 digits";
     }
 
@@ -93,7 +93,7 @@ const Signup = () => {
       localStorage.setItem("registeredUsers", JSON.stringify(existingUsers));
   
       alert("Registration successful");
-      navigate("/dashboard1", { state: formData });
+      navigate("/login", { state: formData });
     } else {
       alert("Form submission failed");
     }
