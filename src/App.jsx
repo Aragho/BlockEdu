@@ -11,6 +11,8 @@ import Loader from "./component/Loader";
 import About from "./component/About";
 import Contact from "./component/Contact";
 import Logos from "./component/Logos";
+import ChangePassword from "./component/Changepassword";
+import Linkpage from "./Page/Linkpage";
 
 
 const App = ()=>{
@@ -28,6 +30,8 @@ const App = ()=>{
         <Route path="about" element={<About/>}/>
         <Route path="contact" element={<Contact/>}/>
         <Route path="logo" element={<Logos/>}/>
+        <Route path="change" element={<ChangePassword/>}/>
+        <Route path="link" element={<Linkpage/>}/>
 
       </Routes>
 

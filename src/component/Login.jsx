@@ -6,11 +6,15 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 export const Login = () => {
+  const [rememberMe, setRememberMe] = useState(false);
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
+  const handleCheckboxChange = (event) => {
+    setRememberMe(event.target.checked);
+  }
 
  
   const [error, setError] = useState({});
@@ -75,14 +79,22 @@ export const Login = () => {
           });
           return;
         }
+        if(matchedUser.role === "student" && matchedUser.firstLogin === true) {
+          navigate("/change", { state: matchedUser });
+          return;
+        }
 
         localStorage.setItem("userDetails", JSON.stringify(matchedUser));
         console.log("Login successful", matchedUser);
         
-        // Clear the form after successful login
+        
         setFormData({ email: "", password: "" });
 
-        navigate("/dashboard1", { state: matchedUser });
+       if(matchedUser.role === "university") {
+          navigate("/dashboard1", { state: matchedUser });
+        } else{
+          navigate("/dashboard2", { state: matchedUser });
+        }
 
       } finally {
         setSubmitting(false);
@@ -145,6 +157,8 @@ export const Login = () => {
             <input
               type="checkbox"
               id="remember"
+              checked={rememberMe}
+              onChange={handleCheckboxChange}
               className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
             />
             <label htmlFor="remember" className="text-gray-700">
