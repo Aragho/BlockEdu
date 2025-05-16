@@ -58,8 +58,32 @@ export const Login = () => {
   
     try {
 
+<<<<<<< HEAD
       console.log(formData);
       const response = await axios.post('https://blockedu.onrender.com/auth/login', formData);
+=======
+
+
+        const storedUsers = JSON.parse(localStorage.getItem("registeredUsers")) || [];
+        const matchedUser = storedUsers.find(
+          (user) =>
+            user.email === formData.email &&
+            user.password === formData.password
+        );
+
+      console.log(formData);
+      const response = await axios.post('https://blockedu.onrender.com/auth/login', formData)
+
+      console.log(formData);
+      const response = await axios.post('https://blockedu.onrender.com/auth/login', formData);
+        const storedUsers = JSON.parse(localStorage.getItem("registeredUsers")) || [];
+        const matchedUser = storedUsers.find(
+          (user) =>
+            user.email === formData.email &&
+            user.password === formData.password
+        );
+
+>>>>>>> d233f4869d8234614186f014fcf003117fd27efb
 
       console.log(response)
       console.log(response.data)
@@ -73,6 +97,18 @@ export const Login = () => {
         localStorage.setItem("officialMail",response.data.officialMail)
         localStorage.setItem("institutionName",response.data.name)
 
+<<<<<<< HEAD
+=======
+
+       if(matchedUser.role === "university") {
+          navigate("/dashboard1", { state: matchedUser });
+        } else{
+          navigate("/dashboard2", { state: matchedUser });
+        }
+
+      } finally {
+        setSubmitting(false);
+>>>>>>> d233f4869d8234614186f014fcf003117fd27efb
         navigate("/dashboard1");
         }      
        else{
@@ -91,6 +127,20 @@ export const Login = () => {
         console.log(response.data.status)
   
         setError(response.data.message);
+<<<<<<< HEAD
+=======
+
+       if(matchedUser.role === "university") {
+          navigate("/dashboard1", { state: matchedUser });
+        } else{
+          navigate("/dashboard2", { state: matchedUser });
+        }
+
+      } finally {
+        setSubmitting(false);
+
+
+>>>>>>> d233f4869d8234614186f014fcf003117fd27efb
       }
       
     } catch (error) {

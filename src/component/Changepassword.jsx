@@ -1,5 +1,7 @@
 import React, { useState } from "react";
+
 import axios from "axios";
+
 import { useLocation, useNavigate } from "react-router-dom";
 import logo from "../assets/logo.png";
 
@@ -20,8 +22,13 @@ const ChangePassword = () => {
     setError("");
   };
 
+
   const handleSubmit =async(event) => {
     event.preventDefault();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
     const { newPassword, confirmPassword } = formData;
 
     if (newPassword.length < 6) {
@@ -33,6 +40,7 @@ const ChangePassword = () => {
       setError("Passwords do not match");
       return;
     }
+
 
     const email = localStorage.getItem("email");
     formData.email = email;
@@ -50,6 +58,23 @@ const ChangePassword = () => {
       console.log(error.message);
       setError(error.message);
       }
+
+
+    const users = JSON.parse(localStorage.getItem("registeredUsers")) || [];
+    const updatedUsers = users.map((u) =>
+      u.email === user.email
+        ? { ...u, password: newPassword, firstLogin: false }
+        : u
+    );
+
+    localStorage.setItem("registeredUsers", JSON.stringify(updatedUsers));
+    localStorage.setItem(
+      "userDetails",
+      JSON.stringify({ ...user, password: newPassword, firstLogin: false })
+    );
+    // navigate("/dashboard2", {
+    //   state: { ...user, password: newPassword, firstLogin: false },
+    // });
 
   };
 

@@ -11,6 +11,11 @@ import Loader from "./component/Loader";
 import About from "./component/About";
 import Contact from "./component/Contact";
 import Logos from "./component/Logos";
+<<<<<<< HEAD
+=======
+import ChangePassword from "./component/Changepassword";
+
+>>>>>>> d233f4869d8234614186f014fcf003117fd27efb
 import Linkpage from "./Page/Linkpage";
 
 
@@ -29,7 +34,16 @@ function App() {
         <Route path="about" element={<About/>}/>
         <Route path="contact" element={<Contact/>}/>
         <Route path="logo" element={<Logos/>}/>
+<<<<<<< HEAD
         <Route path="/linkpage/auth/:id" element={<Linkpage />} />
+=======
+
+        <Route path="/linkpage/auth/:id" element={<Linkpage />} />
+
+        <Route path="change" element={<ChangePassword/>}/>
+        <Route path="link" element={<Linkpage/>}/>
+
+>>>>>>> d233f4869d8234614186f014fcf003117fd27efb
       </Routes>
     </Router>
   );
