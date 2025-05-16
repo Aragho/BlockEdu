@@ -6,17 +6,12 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 export const Login = () => {
-  const [rememberMe, setRememberMe] = useState(false);
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
-  const handleCheckboxChange = (event) => {
-    setRememberMe(event.target.checked);
-  }
 
- 
   const [error, setError] = useState({});
   const [submitting, setSubmitting] = useState(false);
 
@@ -55,56 +50,29 @@ export const Login = () => {
     return errors;
   };
 
-  const handleSubmit = async (event) => {
+  const handleSubmit=async(event)=>{
     event.preventDefault();
-    const errors = validateForm();
 
-    if (Object.keys(errors).length === 0) {
-      setSubmitting(true);
-      try {
-        await new Promise((res) => setTimeout(res, 1000));
+   
 
+  
+    try {
 
-<<<<<<< HEAD
-        const storedUsers = JSON.parse(localStorage.getItem("registeredUsers")) || [];
-        const matchedUser = storedUsers.find(
-          (user) =>
-            user.email === formData.email &&
-            user.password === formData.password
-        );
-=======
       console.log(formData);
       const response = await axios.post('https://blockedu.onrender.com/auth/login', formData);
->>>>>>> upstream/main
 
-        if (!matchedUser) {
-          setError({
-            email: "Invalid email or password",
-            password: "Invalid email or password",
-          });
-          return;
-        }
-        if(matchedUser.role === "student" && matchedUser.firstLogin === true) {
-          navigate("/change", { state: matchedUser });
-          return;
-        }
+      console.log(response)
+      console.log(response.data)
 
-        localStorage.setItem("userDetails", JSON.stringify(matchedUser));
-        console.log("Login successful", matchedUser);
-        
-        
-        setFormData({ email: "", password: "" });
+      if (response.status == 200){
+        if(response.data.role =="ROLE_INSTITUTION"){
+        console.log("Navigating to dashboard1...");
+        alert("Login Successful")
+        localStorage.setItem("token",response.data.token)
+        localStorage.setItem("id",response.data.id)
+        localStorage.setItem("officialMail",response.data.officialMail)
+        localStorage.setItem("institutionName",response.data.name)
 
-<<<<<<< HEAD
-       if(matchedUser.role === "university") {
-          navigate("/dashboard1", { state: matchedUser });
-        } else{
-          navigate("/dashboard2", { state: matchedUser });
-        }
-
-      } finally {
-        setSubmitting(false);
-=======
         navigate("/dashboard1");
         }      
        else{
@@ -123,12 +91,14 @@ export const Login = () => {
         console.log(response.data.status)
   
         setError(response.data.message);
->>>>>>> upstream/main
       }
-    } else {
-      setError(errors);
+      
+    } catch (error) {
+      console.log(error.message)
+      setError(error.message)
     }
-  };
+  }
+
 
   return (
     <div className="max-w-[700px] mx-auto bg-white p-8 rounded-2xl shadow-lg mt-10">
@@ -183,8 +153,6 @@ export const Login = () => {
             <input
               type="checkbox"
               id="remember"
-              checked={rememberMe}
-              onChange={handleCheckboxChange}
               className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
             />
             <label htmlFor="remember" className="text-gray-700">
@@ -221,4 +189,3 @@ export const Login = () => {
 };
 
 export default Login;
-
