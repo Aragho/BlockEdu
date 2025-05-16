@@ -41,11 +41,8 @@ const Signup = () => {
     try {
       console.log(formData);
 
-      const response = await axios.post(
-        "http://localhost:8000/auth/institution/register",
-        formData
-      );
-      if (response.status === 201) {
+      const response = await axios.post('http://localhost:8000/auth/institution/register', formData);
+      if (response.status === 201){
         console.log("Navigating to login...");
         alert("Registration Successful");
         navigate("/login", { state: formData });
@@ -109,26 +106,27 @@ const Signup = () => {
   //       type: formData.type,
 
   //     };
-
+  
   //     const existingUsers = JSON.parse(localStorage.getItem("registeredUsers")) || [];
-
+  
   //     const userExists = existingUsers.some(user => user.email === newUser.email);
   //     if (userExists) {
   //       alert("User already registered. Please log in.");
   //       navigate("/login");
   //       return;
   //     }
-
+  
   //     existingUsers.push(newUser);
   //     localStorage.setItem("registeredUsers", JSON.stringify(existingUsers));
-
+  
   //     alert("Registration successful");
   //     navigate("/dashboard1", { state: formData });
   //   } else {
   //     alert("Form submission failed");
   //   }
   // };
-
+  
+  
   const states = [
     "Abia",
     "Adamawa",

@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router,Routes,Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Landingpage from "./Page/Landingpage";
 import Login from "./component/Login"
 import Signup from "./component/Signup"
@@ -11,12 +11,15 @@ import Loader from "./component/Loader";
 import About from "./component/About";
 import Contact from "./component/Contact";
 import Logos from "./component/Logos";
+<<<<<<< HEAD
 import ChangePassword from "./component/Changepassword";
+=======
+>>>>>>> upstream/main
 import Linkpage from "./Page/Linkpage";
 
 
-const App = ()=>{
-  return(
+function App() {
+  return (
     <Router>
       <Routes>
         <Route path="/" element={<Landingpage/>}/>
@@ -30,13 +33,16 @@ const App = ()=>{
         <Route path="about" element={<About/>}/>
         <Route path="contact" element={<Contact/>}/>
         <Route path="logo" element={<Logos/>}/>
+<<<<<<< HEAD
         <Route path="change" element={<ChangePassword/>}/>
         <Route path="link" element={<Linkpage/>}/>
 
+=======
+        <Route path="/linkpage/auth/:id" element={<Linkpage />} />
+>>>>>>> upstream/main
       </Routes>
-
     </Router>
-
-  )
+  );
 }
+
 export default App;
