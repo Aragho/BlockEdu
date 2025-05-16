@@ -41,8 +41,19 @@ const Signup = () => {
     try {
       console.log(formData);
 
+
+
+
+
       const response = await axios.post('http://localhost:8000/auth/institution/register', formData);
       if (response.status === 201){
+
+      const response = await axios.post(
+        "http://localhost:8000/auth/institution/register",
+        formData
+      );
+      if (response.status === 201) {
+
         console.log("Navigating to login...");
         alert("Registration Successful");
         navigate("/login", { state: formData });
@@ -97,6 +108,10 @@ const Signup = () => {
     return Object.keys(errors).length === 0;
   };
 
+
+
+ 
+
   // const handleSubmit = () => {
   //   if (validateForm()) {
   //     const newUser = {
@@ -109,6 +124,9 @@ const Signup = () => {
   
   //     const existingUsers = JSON.parse(localStorage.getItem("registeredUsers")) || [];
   
+
+
+  //     const existingUsers = JSON.parse(localStorage.getItem("registeredUsers")) || [];
   //     const userExists = existingUsers.some(user => user.email === newUser.email);
   //     if (userExists) {
   //       alert("User already registered. Please log in.");
@@ -119,14 +137,23 @@ const Signup = () => {
   //     existingUsers.push(newUser);
   //     localStorage.setItem("registeredUsers", JSON.stringify(existingUsers));
   
+
+
+  //     existingUsers.push(newUser);
+  //     localStorage.setItem("registeredUsers", JSON.stringify(existingUsers));
+
+
   //     alert("Registration successful");
   //     navigate("/dashboard1", { state: formData });
   //   } else {
   //     alert("Form submission failed");
   //   }
   // };
+
   
   
+
+
   const states = [
     "Abia",
     "Adamawa",

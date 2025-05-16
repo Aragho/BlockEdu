@@ -65,17 +65,27 @@ export const Login = () => {
         await new Promise((res) => setTimeout(res, 1000));
 
 
-<<<<<<< HEAD
+
+
         const storedUsers = JSON.parse(localStorage.getItem("registeredUsers")) || [];
         const matchedUser = storedUsers.find(
           (user) =>
             user.email === formData.email &&
             user.password === formData.password
         );
-=======
+
+      console.log(formData);
+      const response = await axios.post('https://blockedu.onrender.com/auth/login', formData)
+
       console.log(formData);
       const response = await axios.post('https://blockedu.onrender.com/auth/login', formData);
->>>>>>> upstream/main
+        const storedUsers = JSON.parse(localStorage.getItem("registeredUsers")) || [];
+        const matchedUser = storedUsers.find(
+          (user) =>
+            user.email === formData.email &&
+            user.password === formData.password
+        );
+
 
         if (!matchedUser) {
           setError({
@@ -95,7 +105,7 @@ export const Login = () => {
         
         setFormData({ email: "", password: "" });
 
-<<<<<<< HEAD
+
        if(matchedUser.role === "university") {
           navigate("/dashboard1", { state: matchedUser });
         } else{
@@ -104,7 +114,6 @@ export const Login = () => {
 
       } finally {
         setSubmitting(false);
-=======
         navigate("/dashboard1");
         }      
        else{
@@ -123,7 +132,17 @@ export const Login = () => {
         console.log(response.data.status)
   
         setError(response.data.message);
->>>>>>> upstream/main
+
+       if(matchedUser.role === "university") {
+          navigate("/dashboard1", { state: matchedUser });
+        } else{
+          navigate("/dashboard2", { state: matchedUser });
+        }
+
+      } finally {
+        setSubmitting(false);
+
+
       }
     } else {
       setError(errors);
