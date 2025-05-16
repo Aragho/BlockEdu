@@ -45,9 +45,9 @@ const ChangePassword = () => {
       "userDetails",
       JSON.stringify({ ...user, password: newPassword, firstLogin: false })
     );
-    // navigate("/dashboard2", {
-    //   state: { ...user, password: newPassword, firstLogin: false },
-    // });
+    navigate("/dashboard2", {
+      state: { ...user, password: newPassword, firstLogin: false },
+    });
   };
 
   return (
