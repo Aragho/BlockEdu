@@ -1,7 +1,7 @@
 
 import { LineSpinner } from 'ldrs/react'
 import React from 'react';
-import 'ldrs/react/LineSpinner.css'
+import 'ldrs/react/TAILSPIN.css'
 
 const Loader = () => {
   return (

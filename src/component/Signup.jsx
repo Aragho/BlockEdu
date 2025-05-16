@@ -41,21 +41,19 @@ const Signup = () => {
     try {
       console.log(formData);
 
-<<<<<<< HEAD
 
-  const handleSubmit = async()=>{
-    try{
-      console.log(formData)
 
-      const response = await axios.post('https://blockedu.onrender.com/auth/institution/register', formData);
+
+
+      const response = await axios.post('http://localhost:8000/auth/institution/register', formData);
       if (response.status === 201){
-=======
+
       const response = await axios.post(
         "http://localhost:8000/auth/institution/register",
         formData
       );
       if (response.status === 201) {
->>>>>>> 6aa459e46f40a9e04d727452b175c9531408f87f
+
         console.log("Navigating to login...");
         alert("Registration Successful");
         navigate("/login", { state: formData });
@@ -110,9 +108,10 @@ const Signup = () => {
     return Object.keys(errors).length === 0;
   };
 
-<<<<<<< HEAD
+
+
  
-=======
+
   // const handleSubmit = () => {
   //   if (validateForm()) {
   //     const newUser = {
@@ -122,18 +121,27 @@ const Signup = () => {
   //       type: formData.type,
 
   //     };
+  
+  //     const existingUsers = JSON.parse(localStorage.getItem("registeredUsers")) || [];
+  
+
 
   //     const existingUsers = JSON.parse(localStorage.getItem("registeredUsers")) || [];
-
   //     const userExists = existingUsers.some(user => user.email === newUser.email);
   //     if (userExists) {
   //       alert("User already registered. Please log in.");
   //       navigate("/login");
   //       return;
   //     }
+  
+  //     existingUsers.push(newUser);
+  //     localStorage.setItem("registeredUsers", JSON.stringify(existingUsers));
+  
+
 
   //     existingUsers.push(newUser);
   //     localStorage.setItem("registeredUsers", JSON.stringify(existingUsers));
+
 
   //     alert("Registration successful");
   //     navigate("/dashboard1", { state: formData });
@@ -142,7 +150,10 @@ const Signup = () => {
   //   }
   // };
 
->>>>>>> 6aa459e46f40a9e04d727452b175c9531408f87f
+  
+  
+
+
   const states = [
     "Abia",
     "Adamawa",

@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+
+import axios from "axios";
+
 import { useLocation, useNavigate } from "react-router-dom";
 import logo from "../assets/logo.png";
 
@@ -19,8 +22,13 @@ const ChangePassword = () => {
     setError("");
   };
 
+
+  const handleSubmit =async(event) => {
+    event.preventDefault();
+
   const handleSubmit = (e) => {
     e.preventDefault();
+
     const { newPassword, confirmPassword } = formData;
 
     if (newPassword.length < 6) {
@@ -32,6 +40,25 @@ const ChangePassword = () => {
       setError("Passwords do not match");
       return;
     }
+
+
+    const email = localStorage.getItem("email");
+    formData.email = email;
+    try {
+      console.log(formData);
+      const response = await axios.post("http://localhost:8000/student/change_password", formData);
+      if (response.data.status === "success") {
+        
+        navigate("/dashboard2"); 
+      }
+      else {
+        setError(response.data.message);
+      }
+    } catch (error) {
+      console.log(error.message);
+      setError(error.message);
+      }
+
 
     const users = JSON.parse(localStorage.getItem("registeredUsers")) || [];
     const updatedUsers = users.map((u) =>
@@ -48,6 +75,7 @@ const ChangePassword = () => {
     // navigate("/dashboard2", {
     //   state: { ...user, password: newPassword, firstLogin: false },
     // });
+
   };
 
   return (
