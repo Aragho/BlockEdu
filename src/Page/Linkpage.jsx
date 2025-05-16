@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import logo from "../assets/logo.png";
@@ -51,12 +52,20 @@ const Linkpage = () => {
     }
   }, [id]);
 
+=======
+import React from "react";
+import logo from "../assets/logo.png";
+import { IoShieldCheckmarkSharp } from "react-icons/io5";
+
+const Linkpage = () => {
+>>>>>>> 6aa459e46f40a9e04d727452b175c9531408f87f
   return (
     <div className="flex flex-col min-h-screen bg-white">
       <div className="text-center mt-8">
         <img src={logo} alt="blockedu" className="w-[150px] h-auto mx-auto" />
       </div>
 
+<<<<<<< HEAD
       <div className="flex-grow flex items-center justify-center px-4">
         {loading ? (
           <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500" />
@@ -93,6 +102,19 @@ const Linkpage = () => {
       </div>
 
       <footer className="text-center py-4 border-t mt-8">
+=======
+      <div className="flex-grow items-center justify-center px-4 text-center mt-5">
+        <div>
+          <h1 className="text-2xl font-semibold mb-2">Welcome to BlockEdu</h1>
+          <p className="text-gray-600">
+            Your credentials are secure and verified through blockchain technology.
+            {/* <br />
+            Please follow the next steps to proceed. */}
+          </p>
+        </div>
+      </div>
+      <footer className="text-center py-4 border-t">
+>>>>>>> 6aa459e46f40a9e04d727452b175c9531408f87f
         <p>
           &copy; {new Date().getFullYear()} BlockEdu. All rights reserved. | Secured with Blockchain
           <span className="text-blue-500 ml-2 inline-block align-middle">
@@ -105,4 +127,7 @@ const Linkpage = () => {
 };
 
 export default Linkpage;
+<<<<<<< HEAD
 
+=======
+>>>>>>> 6aa459e46f40a9e04d727452b175c9531408f87f

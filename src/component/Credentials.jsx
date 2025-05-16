@@ -23,7 +23,11 @@ const Credentials = () => {
     };
 
     const token = localStorage.getItem("token");
+<<<<<<< HEAD
     const file = document.getElementById("fileUpload").files[0]; 
+=======
+    const file = document.getElementById("fileUpload").files[0];
+>>>>>>> 6aa459e46f40a9e04d727452b175c9531408f87f
 
     if (!token) {
       alert("Token is missing. Please log in again.");

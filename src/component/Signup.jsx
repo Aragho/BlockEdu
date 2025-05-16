@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import { FaLock, FaPhoneAlt } from "react-icons/fa";
-import { MdEmail, MdDriveFileRenameOutline, MdLocationOn } from "react-icons/md";
+import {
+  MdEmail,
+  MdDriveFileRenameOutline,
+  MdLocationOn,
+} from "react-icons/md";
 import { GiConfirmed } from "react-icons/gi";
 import logo from "../assets/logo.png";
 import { useNavigate } from "react-router-dom";
@@ -32,8 +36,12 @@ const Signup = () => {
     }));
   };
 
-  
+  const handleSubmit = async () => {
+    if (!validateForm()) return;
+    try {
+      console.log(formData);
 
+<<<<<<< HEAD
 
   const handleSubmit = async()=>{
     try{
@@ -41,22 +49,26 @@ const Signup = () => {
 
       const response = await axios.post('https://blockedu.onrender.com/auth/institution/register', formData);
       if (response.status === 201){
+=======
+      const response = await axios.post(
+        "http://localhost:8000/auth/institution/register",
+        formData
+      );
+      if (response.status === 201) {
+>>>>>>> 6aa459e46f40a9e04d727452b175c9531408f87f
         console.log("Navigating to login...");
-        alert("Registration Successful")
+        alert("Registration Successful");
         navigate("/login", { state: formData });
-      }
-      
-      else{
+      } else {
         setError(response);
       }
-  
-  }catch (error){
-      setError(error.response?.data?.message || 'Registration failed. Please try again.');
-  }
- 
-
-  }
-  
+    } catch (error) {
+      setError(
+        error.response?.data?.message ||
+          "Registration failed. Please try again."
+      );
+    }
+  };
 
   const validateForm = () => {
     let errors = {};
@@ -79,7 +91,8 @@ const Signup = () => {
       errors.officialPhone = "Phone number must be 10 digits";
     }
 
-    if (!formData.institutionType) errors.institutionType = "Institution type is required";
+    if (!formData.institutionType)
+      errors.institutionType = "Institution type is required";
 
     if (!formData.password) {
       errors.password = "Password is required";
@@ -97,13 +110,77 @@ const Signup = () => {
     return Object.keys(errors).length === 0;
   };
 
+<<<<<<< HEAD
  
+=======
+  // const handleSubmit = () => {
+  //   if (validateForm()) {
+  //     const newUser = {
+  //       email: formData.email,
+  //       name: formData.name,
+  //       password: formData.password,
+  //       type: formData.type,
+
+  //     };
+
+  //     const existingUsers = JSON.parse(localStorage.getItem("registeredUsers")) || [];
+
+  //     const userExists = existingUsers.some(user => user.email === newUser.email);
+  //     if (userExists) {
+  //       alert("User already registered. Please log in.");
+  //       navigate("/login");
+  //       return;
+  //     }
+
+  //     existingUsers.push(newUser);
+  //     localStorage.setItem("registeredUsers", JSON.stringify(existingUsers));
+
+  //     alert("Registration successful");
+  //     navigate("/dashboard1", { state: formData });
+  //   } else {
+  //     alert("Form submission failed");
+  //   }
+  // };
+
+>>>>>>> 6aa459e46f40a9e04d727452b175c9531408f87f
   const states = [
-    "Abia", "Adamawa", "Akwa Ibom", "Anambra", "Bauchi", "Bayelsa", "Benue", "Borno",
-    "Cross River", "Delta", "Ebonyi", "Edo", "Ekiti", "Enugu", "Gombe", "Imo", "Jigawa",
-    "Kaduna", "Kano", "Katsina", "Kebbi", "Kogi", "Kwara", "Lagos", "Nasarawa", "Niger",
-    "Ogun", "Ondo", "Osun", "Oyo", "Plateau", "Rivers", "Sokoto", "Taraba", "Yobe",
-    "Zamfara", "Federal Capital Territory (FCT)"
+    "Abia",
+    "Adamawa",
+    "Akwa Ibom",
+    "Anambra",
+    "Bauchi",
+    "Bayelsa",
+    "Benue",
+    "Borno",
+    "Cross River",
+    "Delta",
+    "Ebonyi",
+    "Edo",
+    "Ekiti",
+    "Enugu",
+    "Gombe",
+    "Imo",
+    "Jigawa",
+    "Kaduna",
+    "Kano",
+    "Katsina",
+    "Kebbi",
+    "Kogi",
+    "Kwara",
+    "Lagos",
+    "Nasarawa",
+    "Niger",
+    "Ogun",
+    "Ondo",
+    "Osun",
+    "Oyo",
+    "Plateau",
+    "Rivers",
+    "Sokoto",
+    "Taraba",
+    "Yobe",
+    "Zamfara",
+    "Federal Capital Territory (FCT)",
   ];
   const types = ["Private", "Public"];
 
@@ -118,9 +195,11 @@ const Signup = () => {
       </h1>
 
       <div className="space-y-6 mt-6">
-  
         <div className="flex flex-col">
-          <label htmlFor="name" className="gap-1 flex mb-1 text-sm font-semibold text-gray-700">
+          <label
+            htmlFor="name"
+            className="gap-1 flex mb-1 text-sm font-semibold text-gray-700"
+          >
             <MdDriveFileRenameOutline className="mt-1" /> Name
           </label>
           <input
@@ -134,7 +213,12 @@ const Signup = () => {
           {error.name && <p className="text-red-500 text-xs">{error.name}</p>}
         </div>
         <div className="flex flex-col">
-          <label htmlFor="motto" className="text-sm font-semibold text-gray-700">Motto</label>
+          <label
+            htmlFor="motto"
+            className="text-sm font-semibold text-gray-700"
+          >
+            Motto
+          </label>
           <input
             type="text"
             name="motto"
@@ -147,7 +231,10 @@ const Signup = () => {
         </div>
 
         <div className="flex flex-col">
-          <label htmlFor="state" className="gap-1 flex mb-1 text-sm font-semibold text-gray-700">
+          <label
+            htmlFor="state"
+            className="gap-1 flex mb-1 text-sm font-semibold text-gray-700"
+          >
             <MdLocationOn className="mt-1" /> State
           </label>
           <select
@@ -158,13 +245,17 @@ const Signup = () => {
           >
             <option value="">Select your state</option>
             {states.map((state) => (
-              <option key={state} value={state}>{state}</option>
+              <option key={state} value={state}>
+                {state}
+              </option>
             ))}
           </select>
           {error.state && <p className="text-red-500 text-xs">{error.state}</p>}
         </div>
         <div className="flex flex-col">
-          <label htmlFor="city" className="text-sm font-semibold text-gray-700">City</label>
+          <label htmlFor="city" className="text-sm font-semibold text-gray-700">
+            City
+          </label>
           <input
             type="text"
             name="city"
@@ -176,7 +267,12 @@ const Signup = () => {
           {error.city && <p className="text-red-500 text-xs">{error.city}</p>}
         </div>
         <div className="flex flex-col">
-          <label htmlFor="admin" className="text-sm font-semibold text-gray-700">Admin</label>
+          <label
+            htmlFor="admin"
+            className="text-sm font-semibold text-gray-700"
+          >
+            Admin
+          </label>
           <input
             type="text"
             name="admin"
@@ -188,9 +284,11 @@ const Signup = () => {
           {error.admin && <p className="text-red-500 text-xs">{error.admin}</p>}
         </div>
 
-    
         <div className="flex flex-col">
-          <label htmlFor="email" className="gap-1 flex mb-1 text-sm font-semibold text-gray-700">
+          <label
+            htmlFor="email"
+            className="gap-1 flex mb-1 text-sm font-semibold text-gray-700"
+          >
             <MdEmail className="mt-1" /> Official Email
           </label>
           <input
@@ -201,12 +299,16 @@ const Signup = () => {
             placeholder="your@email.com"
             className="h-14 border border-gray-300 rounded-lg px-4 py-2"
           />
-          {error.officialMail && <p className="text-red-500 text-xs">{error.officialMail}</p>}
+          {error.officialMail && (
+            <p className="text-red-500 text-xs">{error.officialMail}</p>
+          )}
         </div>
 
-  
         <div className="flex flex-col">
-          <label htmlFor="phone" className="gap-1 flex mb-1 text-sm font-semibold text-gray-700">
+          <label
+            htmlFor="phone"
+            className="gap-1 flex mb-1 text-sm font-semibold text-gray-700"
+          >
             <FaPhoneAlt className="mt-1" /> Phone Number
           </label>
           <div className="flex items-center">
@@ -226,9 +328,11 @@ const Signup = () => {
           {error.phone && <p className="text-red-500 text-xs">{error.phone}</p>}
         </div>
 
-   
         <div className="flex flex-col">
-          <label htmlFor="type" className="gap-1 flex mb-1 text-sm font-semibold text-gray-700">
+          <label
+            htmlFor="type"
+            className="gap-1 flex mb-1 text-sm font-semibold text-gray-700"
+          >
             <MdLocationOn className="mt-1" /> Type
           </label>
           <select
@@ -239,15 +343,19 @@ const Signup = () => {
           >
             <option value="">Select the Type</option>
             {types.map((type) => (
-              <option key={type} value={type}>{type}</option>
+              <option key={type} value={type}>
+                {type}
+              </option>
             ))}
           </select>
           {error.type && <p className="text-red-500 text-xs">{error.type}</p>}
         </div>
 
-    
         <div className="flex flex-col">
-          <label htmlFor="password" className="gap-1 flex mb-1 text-sm font-semibold text-gray-700">
+          <label
+            htmlFor="password"
+            className="gap-1 flex mb-1 text-sm font-semibold text-gray-700"
+          >
             <FaLock className="mt-1" /> Password
           </label>
           <input
@@ -258,12 +366,16 @@ const Signup = () => {
             placeholder="••••••••"
             className="h-14 border border-gray-300 rounded-lg px-4 py-2"
           />
-          {error.password && <p className="text-red-500 text-xs">{error.password}</p>}
+          {error.password && (
+            <p className="text-red-500 text-xs">{error.password}</p>
+          )}
         </div>
 
-
         <div className="flex flex-col">
-          <label htmlFor="confirmPassword" className="gap-1 flex mb-1 text-sm font-semibold text-gray-700">
+          <label
+            htmlFor="confirmPassword"
+            className="gap-1 flex mb-1 text-sm font-semibold text-gray-700"
+          >
             <GiConfirmed className="mt-1" /> Confirm Password
           </label>
           <input
@@ -274,10 +386,11 @@ const Signup = () => {
             placeholder="••••••••"
             className="h-14 border border-gray-300 rounded-lg px-4 py-2"
           />
-          {error.confirmPassword && <p className="text-red-500 text-xs">{error.confirmPassword}</p>}
+          {error.confirmPassword && (
+            <p className="text-red-500 text-xs">{error.confirmPassword}</p>
+          )}
         </div>
 
-  
         <div className="flex items-center gap-2 text-xs sm:text-sm mt-3">
           <input
             type="checkbox"
@@ -289,8 +402,7 @@ const Signup = () => {
           </label>
         </div>
 
-    
-        <div className="flex justify-center mt-6">
+        <div className="flex flex-col items-center mt-6 space-y-2">
           <button
             type="submit"
             onClick={handleSubmit}
@@ -298,6 +410,9 @@ const Signup = () => {
           >
             Sign Up
           </button>
+          {error.form && (
+            <p className="text-red-500 text-sm text-center">{error.form}</p>
+          )}
         </div>
       </div>
     </div>
