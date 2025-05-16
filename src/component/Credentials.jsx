@@ -22,12 +22,17 @@ const Credentials = () => {
       institutionName: localStorage.getItem("institutionName"),
     };
 
+<<<<<<< HEAD
+    const token = localStorage.getItem("token");
+    const file = document.getElementById("fileUpload").files[0]; 
+=======
     const token = localStorage.getItem("to
     const file = document.getElementById("fileUpload").files[0]; // Get the uploaded file
     const file = document.getElementById("fileUpload").files[0]; 
 
     const file = document.getElementById("fileUpload").files[0];
 
+>>>>>>> d233f4869d8234614186f014fcf003117fd27efb
 
     if (!token) {
       alert("Token is missing. Please log in again.");
